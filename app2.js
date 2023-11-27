@@ -7,19 +7,22 @@ const expressValidator = require("express-validator");
 const flash = require("connect-flash");
 const session = require("express-session");
 const passport = require("passport");
-const config = require("./config/database");
+//const config = require("./config/database");
 
-mongoose.connect(config.database);
-let db = mongoose.connection;
+const mongoURI = "mongodb+srv://vanshikasharma2003:Vanshika123@cluster0.1vhfndb.mongodb.net/";
+mongoose.connect(mongoURI).then(console.log("connected successfully")).catch((err)=>console.log(err));
 
-//check connection
-db.once("open", function () {
-    console.log("Connected to mongodb");
-});
-//check for db errors
-db.on("error", function () {
-    console.log(err);
-});
+// mongoose.connect(config.database);
+// let db = mongoose.connection;
+
+// //check connection
+// db.once("open", function () {
+//     console.log("Connected to mongodb");
+// });
+// //check for db errors
+// db.on("error", function () {
+//     console.log(err);
+// });
 
 //init app
 const app = express();
